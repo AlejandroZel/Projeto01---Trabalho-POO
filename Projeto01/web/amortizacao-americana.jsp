@@ -1,7 +1,7 @@
 <%-- 
     Document   : amortizacao-americana
-    Created on : 08/03/2020, 17:40:11
-    Author     : GABRIELALEJANDROZELA
+    Created on : 01/09/2019, 04:16:44
+    Author     : user
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -11,10 +11,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" crossorigin="anonymous" >
         
         <style>
+            @import url('https://fonts.googleapis.com/css?family=Nunito&display=swap');
             html {
-                font-family: sans-serif;
+                font-family: 'Nunito', sans-serif;
                 -webkit-font-smoothing: antialiased;
                 min-height: 100%;
             }
@@ -25,11 +27,7 @@
             body {
                  height: 100%;
                 margin: 0;
-                background: #00FFFF;
-                background: #DD5E89;  /* fallback for old browsers */
-                background: -webkit-linear-gradient(to right, #F7BB97, #DD5E89);  /* Chrome 10-25, Safari 5.1-6 */
-                background: linear-gradient(to right, #F7BB97, #DD5E89);
-                color: #fff;
+                color: #000;
                  background-repeat: no-repeat;
             }
             .categories .card{ width: 43%; padding: 20px;  }
@@ -101,7 +99,96 @@
         </style>
     </head>
     <body>
-        <%@include file="WEB-INF/jspf/menu.jspf" %>
-        <h1>Hello World!</h1>
-    </body>
+        <div class="content">
+       <%@include file="WEB-INF/jspf/header.jspf" %> 
+    
+        <%@include file="WEB-INF/jspf/menu.jspf" %> 
+        <h1 style="padding: 20px 0;"> Amortização Americana</h1><br/>
+        <% if (request.getParameter("enviar") == null) { %>
+        <form>
+        <b>Valor da Divida: <input type="number" name="valorDivida"/>
+        <b> | Quantidade de Parcelas: <input type="number" name="nParcelas"/>
+        <b> | Taxa: <input type="number" step="0.01" name="taxa"/>
+            <input type="submit" name="enviar" value="Enviar"/>
+        </form>
+        <% } else { %>
+
+        <%try {%>
+        <%double divida = Double.parseDouble(request.getParameter("valorDivida"));%>
+        <%double nParcelas = Double.parseDouble(request.getParameter("nParcelas"));%>
+        <%double tax = Double.parseDouble(request.getParameter("taxa")); %>
+        <%double parcela = 0;%>
+        <%double montante = 0;%>
+         <style>
+                 .table-hover > tbody > tr > td, .table-hover > tbody > tr > th, .table-hover > tfoot > tr > td, .table-hover > tfoot > tr > th, .table-hover > thead > tr > td, .table-hover > thead > tr > th {
+                    border: 1px solid #7C064D;
+                    font-size: 125%;
+                    text-align: center;
+                  }
+             </style>
+        <div class="container">
+        <table border="1" class="table table-hover">
+            <tr>
+               <th> N° Parcelas</th> 
+                <th>Amortização</th>
+                <th>Juros (<%=tax%> de <%=divida%>)</th>
+                <th>Dívida</th>
+                <th>Montante</th>
+            </tr>
+            <% for (int i = 0; i <= nParcelas +1 ; i++) {%>
+
+            <tr>
+                <td >
+                    <% if(i <= nParcelas){%>
+                    <%=i%>  
+                    <%}else{%> -----
+                    <% }%>
+                </td>
+                <td>
+                    <% if (i < nParcelas) {%>
+                    0
+                    <%} else if(i==nParcelas) {%>
+                    <%= divida%>
+                    <%}else{%> -----
+                    <% }%>
+                </td>
+                <td>
+                    <% if(i == 0){%>0 <%} else if(i < nParcelas +1){ %>
+                    <%parcela = (divida/100)*tax;%>
+                    <%=parcela%>
+                    <% montante = montante + parcela;%>
+                    <% }else{ %> -----
+                    <% }%>
+                </td>
+                <td>
+                    <% if(i < nParcelas){%>
+                    <%=divida%>
+                    <% }else if(i == nParcelas){%>Total pago em juros:
+                    <% }else{%> Total quitado:
+                    <% }%>
+                </td>
+                <td>
+                    <% if(i < nParcelas){%>   
+                        <%=montante%>
+                    <%}else if(i == nParcelas){%>
+                    <%=montante%>
+                    <%}else { %>
+                    <% montante = montante + divida;%>
+                    <%=montante%>
+            </b>
+                    <%}%>
+                </td>
+            </tr>
+            <%}%>
+        </table>
+         </div>
+        <%} catch (Exception ex) {%>
+        <h3 style="color: red"><%= ex.getMessage()%></h3>
+        <%}%>
+
+        <% }%>
+         </div>
+        </body>
+       <%@include file="WEB-INF/jspf/footer.jspf" %>  
+       
 </html>
