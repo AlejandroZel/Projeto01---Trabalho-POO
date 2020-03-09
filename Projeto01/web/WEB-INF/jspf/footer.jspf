@@ -1,7 +1,7 @@
 <!-- any content can be specified here e.g.: -->
 <%@ page pageEncoding="UTF-8" %>
 <footer style="text-align: center">
-    <b class="titulo"> Desenvolvido por: </b><br> <p class="txt">Beatriz Diegues --- Daniel Barbosa --- Marina Lopes --- Matheus Lima </p>
+    <b class="titulo"> Desenvolvido por: </b><br> <p class="txt">Carlos Eduardo | --- | Débora Franco | --- | Gabriel Alejandro | --- | Henrique da Silva | --- | Paulo Reis | --- | Thiago de Sousa  </p>
 </footer>
 <style>
     *{

@@ -103,7 +103,7 @@
        <script>
             document.getElementById('constante').addEventListener('click', function(event) { document.location.href = '/Projeto01/amortizacao-constante.jsp';});
             document.getElementById('americana').addEventListener('click', function(event) { document.location.href = '/Projeto01/amortizacao-americana.jsp';});
-            document.getElementById('tabela_price').addEventListener('click', function(event) {document.location.href = '/Projto01/tabela-price.jsp';});
+            document.getElementById('tabela_price').addEventListener('click', function(event) {document.location.href = '/Projeto01/tabela-price.jsp';});
        </script>
           <%@include file="WEB-INF/jspf/footer.jspf" %>              
     </body>

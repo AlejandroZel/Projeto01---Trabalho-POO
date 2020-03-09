@@ -1,3 +1,42 @@
-<%-- any content can be specified here e.g.: --%>
+<!-- any content can be specified here e.g.: -->
 <%@ page pageEncoding="UTF-8" %>
-<h2>Hello World!</h2>
+<div class="menu" style="text-align: center">
+    <div id="inicio" class='item'> <span>Inicio</span></div>
+    <div id="constante" class='item'>  <span>Amortização Constante</span> </div>
+    <div  id="americana"class='item'> <span>Amortização Americana</span></div>
+    <div id="tabela_price"class='item'>  <span>Tabela Price</span> </div>
+
+</div>
+<script>
+    document.getElementById('inicio').addEventListener('click', function (event) {
+        document.location.href = '/Projeto01/home.jsp';
+    });
+    document.getElementById('constante').addEventListener('click', function (event) {
+        document.location.href = '/Projeto01/amortizacao-constante.jsp';
+    });
+    document.getElementById('americana').addEventListener('click', function (event) {
+        document.location.href = '/Projeto01/amortizacao-americana.jsp';
+    });
+    document.getElementById('tabela_price').addEventListener('click', function (event) {
+        document.location.href = '/Projeto01/tabela-price.jsp';});
+</script>
+<style>
+
+    .menu{
+        display: flex; justify-content: space-between;  flex-wrap: wrap;  
+        padding: 5px 60px;
+/*        background: white;*/
+        color: black;
+    }
+
+    .item {
+        border: 1px solid black;
+        padding: 8px 12px;
+        background-color: white;
+        box-shadow: 2px 6px 13px rgba(46, 61, 73, 0.4);
+        width: 20%;
+        border-radius: 3px;
+    }
+
+
+</style>
