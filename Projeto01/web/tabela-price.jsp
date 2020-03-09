@@ -1,7 +1,7 @@
 <%-- 
     Document   : tabela-price
     Created on : 08/03/2020, 12:56:52
-    Author     : CPD
+    Author     : Carlos Eduardo
 --%>
 
 <%@page import="java.text.NumberFormat"%>
@@ -39,10 +39,10 @@
             }
             .categories .card{ width: 43%; padding: 20px;  }
             .categories p { color: gray;   }
-            .team .card { width: 15%; text-align: center; margin: 20px 20px;;  }
-            .team .card h4 { margin: 0; font-size: 20px;  padding: 3px 0; text-align: center;  }
-            .team, .categories { display: flex; justify-content: space-between;  flex-wrap: wrap;  }
-            .team .card img { width: 100%; }
+            .card { width: 15%; text-align: center; margin: 20px 20px;;  }
+            .card h4 { margin: 0; font-size: 20px;  padding: 3px 0; text-align: center;  }
+            .categories { display: flex; justify-content: space-between;  flex-wrap: wrap;  }
+            .card img { width: 100%; }
             .fa {font-size: 20px; padding: 0px 2px; }
             .categories h2 { margin: 0;  text-align: center; }
             #constante, #americana, #tabela_price, #inicio { cursor: pointer;  transition: all .2s ease-in-out;  }
