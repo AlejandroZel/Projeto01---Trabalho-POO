@@ -114,19 +114,19 @@
         <% if(request.getParameter("enviar") == null){ %>
             <form>
                <b> Valor da Divida: <input type="number" name="divida"/>
-               <b> | Quantidade de Parcelas: <input type="number" name="n"/>
+               <b> | Quantidade de Parcelas: <input type="number" name="qtdParcelas"/>
                <b> | Taxa: <input type="number" step="0.01" name="taxa"/>
                 <input type="submit" name="enviar" value="Enviar"/>
             </form>
             
          <% } else{ %>
          <%try {
-                double i=0, n=0, divida=0, amortizacao=0, juros=0, totala=0, totalj=0, prestacao=0,totalp=0;
+                double taxa=0, qtdParcelas=0, divida=0, amortizacao=0, juros=0, totalAmortizacao=0, totalJuros=0, prestacao=0,totalPrestacao=0;
                 DecimalFormat formato = new DecimalFormat("#.##");
-                i = Double.parseDouble(request.getParameter("taxa"))/100;
+                taxa = Double.parseDouble(request.getParameter("taxa"))/100;
                 divida = Double.parseDouble(request.getParameter("divida"));
-                n = Double.parseDouble(request.getParameter("n"));
-                amortizacao = divida / n;%>
+                qtdParcelas = Double.parseDouble(request.getParameter("qtdParcelas"));
+                amortizacao = divida / qtdParcelas;%>
                 
              <div class="container">
                  
@@ -147,28 +147,27 @@
                         <td> - </td>
                         <td>R$ <%=formato.format(divida)%></td>
                     </tr>
-                    <%for (int x = 1; x <= n; x++) {%>
+                    <%for (int x = 1; x <= qtdParcelas; x++) {%>
                     <tr>
                         <td><%=x%></td>
-                        <%prestacao = amortizacao + (divida * i);%>
+                        <%prestacao = amortizacao + (divida * taxa);%>
                         <td>R$ <%=formato.format(prestacao)%></td>
-                        <%totalp = prestacao + totalp;
-                        juros = divida * i;
-                        totalj = juros + totalj;
-                        totala=amortizacao+totala;%>
+                        <%totalPrestacao += prestacao;
+                        juros = divida * taxa;
+                        totalJuros += juros;
+                        totalAmortizacao += amortizacao;
+                        divida -= amortizacao;%>
                         <td>R$ <%=formato.format(juros)%></td>
                         <td>R$ <%=formato.format(amortizacao)%></td>
-                        <%divida = divida - amortizacao;%>
                         <td>R$ <%=formato.format(divida)%></td>
-
 
                     </tr>
                     <%}%>
                     <tr>
                         <td> ∑ →</td>
-                        <td >R$ <%=formato.format(totalp)%></td>
-                        <td >R$ <%=formato.format(totalj)%></td>
-                        <td >R$ <%=formato.format(totala)%></td>
+                        <td >R$ <%=formato.format(totalPrestacao)%></td>
+                        <td >R$ <%=formato.format(totalJuros)%></td>
+                        <td >R$ <%=formato.format(totalAmortizacao)%></td>
                         <td >  -  </td>
                         
                     </tr>
