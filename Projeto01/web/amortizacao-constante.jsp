@@ -92,11 +92,16 @@
             .content{
                 min-height: 100vh;
             }
-             .container{
-                display: flex;
-                justify-content: center;
-                padding-bottom: 40px;
-              }
+            .container{
+               display: flex;
+               justify-content: center;
+               padding-bottom: 40px;
+             }
+
+            .table-hover > tbody > tr > td, .table-hover > tbody > tr > th, .table-hover > tfoot > tr > td, .table-hover > tfoot > tr > th, .table-hover > thead > tr > td, .table-hover > thead > tr > th {
+                 border: 1px solid #000000;
+                 font-size: 125%;
+                 text-align: center;
         </style>
     </head>
     <body>
